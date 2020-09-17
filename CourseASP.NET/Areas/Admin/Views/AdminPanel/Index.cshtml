@@ -1,0 +1,66 @@
+﻿@model CourseASP.NET.Models.AdminViewModel
+
+@{
+    Layout ="~/Areas/Admin/Views/Shared/_LayoutPageAdmin.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                Email
+            </th>
+
+            <th>
+                Roles
+            </th>
+
+            <th>
+                Action
+            </th>
+        </tr>
+
+        @foreach (var user in Model.Users)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => user.Email)
+                </td>
+                @using (Html.BeginForm("Index", "AdminPanel", new { id = user.Id }, FormMethod.Post))
+                {
+                    <td>
+                        <select name="role" class="form-control">
+                            @foreach (var role in Model.Roles)
+                            {
+                                if (user.Role.Equals(role))
+                                {
+                                    <option selected>@role</option>
+                                }
+                                else
+                                {
+                                    <option>@role</option>
+
+                                }
+                            }
+                        </select>
+                    </td>
+                    <td>
+                        <button type="submit" class="btn-sm btn-success">Set</button>
+                    </td>
+                }
+            </tr>
+        }
+
+    </table>
+</body>
+</html>

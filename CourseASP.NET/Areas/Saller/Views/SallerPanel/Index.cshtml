@@ -1,0 +1,30 @@
+﻿@model IEnumerable<CourseASP.NET.Models.SallerViewModel>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Saller/Views/Saller/_LayoutPageSaller.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.Products)
+    {
+     
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+               
+            </tr>
+        
+    }
+
+</table>
